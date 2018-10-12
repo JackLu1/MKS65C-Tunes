@@ -1,6 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+struct song_node {
+    char name[100];
+    char artist[100];
+    struct song_node *next;
+};
+
 void print_list(struct node * n){
     while(n){
         printf("num = %d\n", n->num);
