@@ -47,8 +47,8 @@ struct song_node *free_list(struct song_node * head)
     while (head)
     {
         temp = head;
-        free(temp);
         head = head->next;
+        free(temp);
     }
     return 0;
 }
