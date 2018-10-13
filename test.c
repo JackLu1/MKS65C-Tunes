@@ -50,7 +50,7 @@ void test_add_song_sorted()
     print_list(song_list);
 
     printf(":::Adding to the end:::\n");
-    song_list = add_song_sorted(song_list, "Queen", "We Will Rock You");
+    song_list = add_song_sorted(song_list, "Queen", "Killer Queen");
     print_list(song_list);
 
     printf(":::Adding to the end:::\n");
@@ -58,7 +58,7 @@ void test_add_song_sorted()
     print_list(song_list);
 
     printf(":::Add by song name:::\n");
-    song_list = add_song_sorted(song_list, "Queen", "Killer Queen");
+    song_list = add_song_sorted(song_list, "Queen", "We Will Rock You");
     song_list = add_song_sorted(song_list, "Queen", "Don't Stop Me Now");
     print_list(song_list);
 
