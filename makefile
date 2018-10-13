@@ -1,5 +1,5 @@
-all: test.o song_list.o song_list.h
-	gcc -o musicplayertest test.o song_list.o
+all: song_list.o test.o song_list.h
+	gcc -o musicplayertest song_list.o test.o 
 
 run: all
 	./musicplayertest
@@ -17,8 +17,8 @@ clean:
 debug: debug_o debug_link
 
 debug_o: song_list.c test.c
-	gcc -c test.c song_list.c -g
+	gcc -c song_list.c test.c -g
 
 debug_link: test.o song_list.o song_list.h
-	gcc -o musicplayertest test.o song_list.o -g
+	gcc -o musicplayertest song_list.o test.o -g
 

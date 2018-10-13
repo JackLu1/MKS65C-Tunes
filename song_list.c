@@ -5,14 +5,18 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "song_list.h"
 
-struct song_node {
-    char name[100];
-    char artist[100];
-    struct song_node *next;
-};
+char *n_strncpy(char * dest, char * src, int len)
+{
+    /*
+     * Same as strncpy, but always null terminates the dest array.
+     */
+    strncpy(dest, src, len);
+    dest[len - 1] = 0;
+}
 
-void print_songs(struct song_node *n)
+void print_list(struct song_node *n)
 {
     while(n)
     {
@@ -21,17 +25,16 @@ void print_songs(struct song_node *n)
     }
 }
 
-struct song_node * add_song(struct song_node *front, char *name, char *artist)
+struct song_node *add_song(struct song_node *front, char *name, char *artist)
 {
     struct song_node * new_front = malloc(sizeof(struct song_node));
-    /* TODO: Fix potential buffer overflow */
-    strcpy(new_front->name, name);
-    strcpy(new_front->artist, artist);
     new_front->next = front;
+    n_strncpy(new_front->name, name, 100);
+    n_strncpy(new_front->artist, artist, 100);
     return new_front;
 }
 
-struct song_node * free_list(struct song_node * front)
+struct song_node *free_list(struct song_node * front)
 {
     struct song_node * temp = front;
     struct song_node * ret = front;
