@@ -34,9 +34,8 @@ struct song_node *add_song(struct song_node *head, char *artist, char *name)
      * Returns a pointer to the beginning of the list.
      * 
      * It can also add to the middle of a list,
-     * but it will not update the next node of the node previous to the inserted node
-     * and will break the list.
-     * (Therefore must be set manually)
+     * but it will not update the node pointed to by the previous node and will break the list.
+     * (Therefore, you must manually set it)
      */
 
     struct song_node *new_head = malloc(sizeof(struct song_node));
