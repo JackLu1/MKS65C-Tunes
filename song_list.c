@@ -59,59 +59,36 @@ struct song_node *add_song_sorted(struct song_node *head, char *artist, char *na
         return add_song(head, artist, name);
     }
 
-    struct song_node *cur;
-    struct song_node *prev;
+    struct song_node *cur = head;
+    struct song_node *prev = 0;
     struct song_node *new_node;
 
     /* Find a position to add the node */
-    for (cur = head, prev = 0; strcmp(artist, cur->artist) > 0; prev = cur, cur = cur->next)
+    while (cur != 0 && strcmp(artist, cur->artist) > 0)
     {
-        /* Last node reached, add to end */
-        if (cur->next == NULL)
-        {
-            new_node = add_song(0, artist, name);
-            cur->next = new_node;
-            return head;
-        }
-    }
-
-    if (strcmp(artist, cur->artist) < 0)
-    {
-        /* Insert to found position */
-        new_node = add_song(cur, artist, name);
-        /* Added to beginning of a list */
-        if (prev == NULL)
-        {
-            return new_node;
-        }
-        prev->next = new_node;
-        return head;
+        prev = cur;
+        cur = cur->next;
     }
 
     /* Same artist name, sort by song name instead */
-    if (strcmp(artist, cur->artist) == 0)
+    while (cur != 0 && strcmp(name, cur->name) > 0)
     {
-        /* Find a position to add the node */
-        for (; strcmp(name, cur->name) > 0; prev = cur, cur = cur->next)
-        {
-            /* Last node reached, add to end */
-            if (cur->next == NULL)
-            {
-                new_node = add_song(0, artist, name);
-                cur->next = new_node;
-                return head;
-            }
-        }
-        /* Insert to found position */
-        new_node = add_song(cur, artist, name);
-        /* Added to beginning of a list */
-        if (prev == NULL)
-        {
-            return new_node;
-        }
-        prev->next = new_node;
-        return head;
+        prev = cur;
+        cur = cur->next;
     }
+
+    /* Insert to found position */
+    new_node = add_song(cur, artist, name);
+    if (prev == NULL)
+    {
+        return new_node;
+    }
+    prev->next = new_node;
+    return head;
+}
+
+struct song_node *remove_song(struct song_node *to_rm)
+{
 }
 
 struct song_node *free_list(struct song_node * head)

@@ -71,7 +71,6 @@ void test_add_song_sorted()
     print_list(song_list);
 }
 
-
 int main()
 {
     test_song_list();
