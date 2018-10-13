@@ -35,7 +35,7 @@ struct song_node *add_song(struct song_node *head, char *artist, char *name)
      * 
      * It can also add to the middle of a list,
      * but it will not update the next node of the node previous to the inserted node.
-     * (Therefore must be set manualy)
+     * (Therefore must be set manually)
      */
 
     struct song_node *new_head = malloc(sizeof(struct song_node));
