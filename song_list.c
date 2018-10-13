@@ -29,13 +29,13 @@ void print_list(struct song_node *n)
 struct song_node *add_song(struct song_node *head, char *artist, char *name)
 {
     /*
-     * Adds a song before the node, and set its next node to the given node.
-     * (Usually should only be used to add to the front of a list)
+     * Add a song to the beginning of the list.
      *
      * Returns a pointer to the beginning of the list.
      * 
-     * If the pointer points to the middle of a list, it will break the list unless
-     * the pointer of the previous node is manually set.
+     * It can also add to the middle of a list,
+     * but it will not update the next node of the node previous to the inserted node.
+     * (Therefore must be set manualy)
      */
 
     struct song_node *new_head = malloc(sizeof(struct song_node));
