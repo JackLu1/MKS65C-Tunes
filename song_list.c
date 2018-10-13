@@ -7,7 +7,7 @@
 #include <string.h>
 #include "song_list.h"
 
-char *n_strncpy(char * dest, char * src, int len)
+char *n_strncpy(char *dest, char *src, int len)
 {
     /*
      * Same as strncpy, but always null terminates the dest array.
@@ -26,26 +26,20 @@ void print_list(struct song_node *n)
     printf("\n");
 }
 
-struct song_node *add_song(struct song_node *head, char *artist, char *name)
+struct song_node *add_song(struct song_node *list, char *artist, char *name)
 {
     /*
      * Add a song to the beginning of the list.
-     *
-     * Returns a pointer to the beginning of the list.
-     * 
-     * It can also add to the middle of a list,
-     * but it will not update the node pointed to by the previous node and will break the list.
-     * (Therefore, you must manually set it)
      */
 
-    struct song_node *new_head = malloc(sizeof(struct song_node));
-    new_head->next = head;
-    n_strncpy(new_head->artist, artist, 100);
-    n_strncpy(new_head->name, name, 100);
-    return new_head;
+    struct song_node *new_list = malloc(sizeof(struct song_node));
+    new_list->next = list;
+    n_strncpy(new_list->artist, artist, 100);
+    n_strncpy(new_list->name, name, 100);
+    return new_list;
 }
 
-struct song_node *add_song_sorted(struct song_node *head, char *artist, char *name)
+struct song_node *add_song_sorted(struct song_node *list, char *artist, char *name)
 {
     /*
      * Adds a song in alphabetical order, first by the artist name and then the song name.
@@ -53,25 +47,25 @@ struct song_node *add_song_sorted(struct song_node *head, char *artist, char *na
      * Returns a pointer to the beginning of the list. 
      */
 
-    // Empty list, add to head
-    if (head == NULL)
+    // Empty list, add to list
+    if (list == NULL)
     {
-        return add_song(head, artist, name);
+        return add_song(list, artist, name);
     }
 
-    struct song_node *cur = head;
-    struct song_node *prev = 0;
+    struct song_node *cur = list;
+    struct song_node *prev = NULL;
     struct song_node *new_node;
 
     /* Find a position to add the node */
-    while (cur != 0 && strcmp(artist, cur->artist) > 0)
+    while (cur != NULL && strcmp(artist, cur->artist) > 0)
     {
         prev = cur;
         cur = cur->next;
     }
 
     /* Same artist name, sort by song name instead */
-    while (cur != 0 && strcmp(artist, cur->artist) == 0 && strcmp(name, cur->name) > 0)
+    while (cur != NULL, strcmp(artist, cur->artist) == 0, strcmp(name, cur->name) > 0)
     {
         prev = cur;
         cur = cur->next;
@@ -84,20 +78,42 @@ struct song_node *add_song_sorted(struct song_node *head, char *artist, char *na
         return new_node;
     }
     prev->next = new_node;
-    return head;
+    return list;
 }
 
-struct song_node *remove_song(struct song_node *to_rm)
+struct song_node *remove_song(struct song_node *list, struct song_node *to_rm)
 {
-}
-
-struct song_node *free_list(struct song_node * head)
-{
-    struct song_node *temp = head;
-    while (head)
+    /*
+     * Remove to_rm from list.
+     *
+     * Returns beginning of the list.
+     */
+    if (list == to_rm)
     {
-        temp = head;
-        head = head->next;
+        struct song_node *new_head = to_rm->next;
+        free(to_rm);
+        return new_head;
+    }
+    struct song_node *cur = list;
+    while (cur != NULL)
+    {
+        if (cur->next == to_rm)
+        {
+            cur->next = to_rm->next;
+            free(to_rm);
+            return list;
+        }
+        cur = cur->next;
+    }
+}
+
+struct song_node *free_list(struct song_node *list)
+{
+    struct song_node *temp = list;
+    while (list)
+    {
+        temp = list;
+        list = list->next;
         free(temp);
     }
     return 0;

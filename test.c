@@ -28,7 +28,18 @@ void test_song_list()
             "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAb");
     print_list(song_list);
     
-    // NOTE: should be tested with valgrind
+    printf(":::Remove a node:::\n");
+    song_list = remove_song(song_list, song_list->next);
+    print_list(song_list);
+
+    printf(":::Remove head:::\n");
+    song_list = remove_song(song_list, song_list);
+    print_list(song_list);
+
+    printf(":::Remove everything:::\n");
+    song_list = remove_song(song_list, song_list);
+    song_list = remove_song(song_list, song_list);
+    print_list(song_list);
     song_list = free_list(song_list);
 }
 
@@ -74,7 +85,7 @@ void test_add_song_sorted()
 int main()
 {
     test_song_list();
-    test_add_song_sorted();
+    /* test_add_song_sorted(); */
     return 0;
 }
 

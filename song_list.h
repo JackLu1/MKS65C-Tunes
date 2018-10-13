@@ -8,4 +8,4 @@ void print_list(struct song_node *);
 struct song_node *add_song(struct song_node *, char *, char *);
 struct song_node *add_song_sorted(struct song_node *, char *, char *);
 struct song_node *free_list(struct song_node *);
-
+struct song_node *remove_song(struct song_node *, struct song_node *);
