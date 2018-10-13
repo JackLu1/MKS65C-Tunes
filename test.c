@@ -22,10 +22,10 @@ void test_song_list()
     song_list = add_song(song_list, "John Coltrane", "Blue Train");
     print_list(song_list);
 
-    printf(":::Buffer overflow test:::\n");
+    printf(":::Buffer overflow prevention test:::\n");
     song_list = add_song(song_list, 
-            "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", 
-            "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+            "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAb", 
+            "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAb");
     print_list(song_list);
     
     // NOTE: should be tested with valgrind
@@ -57,15 +57,16 @@ void test_add_song_sorted()
     song_list = add_song_sorted(song_list, "Vanilla Ice", "Ice Ice Baby");
     print_list(song_list);
 
-    printf(":::Add by song name, at beginning:::\n");
+    printf(":::Add by song name:::\n");
+    song_list = add_song_sorted(song_list, "Queen", "Killer Queen");
     song_list = add_song_sorted(song_list, "Queen", "Don't Stop Me Now");
     print_list(song_list);
 
-    printf(":::Add by song name, in middle:::\n");
-    song_list = add_song_sorted(song_list, "Queen", "Killer Queen");
+    printf(":::Add by song name at the beginning:::\n");
+    song_list = add_song_sorted(song_list, "ABBA", "Chiquita");
     print_list(song_list);
 
-    printf(":::Add by song name, at end of list:::\n");
+    printf(":::Add by song name, at the end:::\n");
     song_list = add_song_sorted(song_list, "Vanilla Ice", "Play That Funky Music");
     print_list(song_list);
 }
@@ -73,7 +74,7 @@ void test_add_song_sorted()
 
 int main()
 {
-    test_song_list();
+    /* test_song_list(); */
     test_add_song_sorted();
     return 0;
 }
