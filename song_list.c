@@ -66,9 +66,9 @@ struct song_node *add_song_sorted(struct song_node *head, char *artist, char *na
     /* Find a position to add the node */
     for (cur = head, prev = 0; strcmp(artist, cur->artist) > 0; prev = cur, cur = cur->next)
     {
+        /* Last node reached, add to end */
         if (cur->next == NULL)
         {
-            /* Last node reached, add to end */
             new_node = add_song(0, artist, name);
             cur->next = new_node;
             return head;
@@ -77,7 +77,9 @@ struct song_node *add_song_sorted(struct song_node *head, char *artist, char *na
 
     if (strcmp(artist, cur->artist) < 0)
     {
+        /* Insert to found position */
         new_node = add_song(cur, artist, name);
+        /* Added to beginning of a list */
         if (prev == NULL)
         {
             return new_node;
@@ -86,20 +88,23 @@ struct song_node *add_song_sorted(struct song_node *head, char *artist, char *na
         return head;
     }
 
+    /* Same artist name, sort by song name instead */
     if (strcmp(artist, cur->artist) == 0)
     {
         /* Find a position to add the node */
         for (; strcmp(name, cur->name) > 0; prev = cur, cur = cur->next)
         {
+            /* Last node reached, add to end */
             if (cur->next == NULL)
             {
-                /* Last node reached, add to end */
                 new_node = add_song(0, artist, name);
                 cur->next = new_node;
                 return head;
             }
         }
+        /* Insert to found position */
         new_node = add_song(cur, artist, name);
+        /* Added to beginning of a list */
         if (prev == NULL)
         {
             return new_node;
