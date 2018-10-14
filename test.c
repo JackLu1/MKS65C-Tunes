@@ -28,8 +28,17 @@ void test_song_list()
             "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAb");
     print_list(song_list);
     
+    printf(":::Finding [John Coltrane - Blue Train]:::\n");
+    struct song_node *song = find_song(song_list, "John Coltrane", "Blue Train");
+    print_song(song);
+
+    printf(":::Finding [JynX - Present World Overhaul]:::\n");
+    song = find_song(song_list, "JynX", "Present World Overhaul");
+    printf("%p\n", song);
+
     printf(":::Remove a node:::\n");
-    song_list = remove_song(song_list, song_list->next);
+    song_list = remove_song(song_list, 
+            find_song(song_list, "Red Hot Chili Peppers", "Otherside"));
     print_list(song_list);
 
     printf(":::Remove head:::\n");
@@ -85,7 +94,7 @@ void test_add_song_sorted()
 int main()
 {
     test_song_list();
-    test_add_song_sorted();
+    /* test_add_song_sorted(); */
     return 0;
 }
 

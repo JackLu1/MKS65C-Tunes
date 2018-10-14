@@ -16,14 +16,18 @@ char *n_strncpy(char *dest, char *src, int len)
     dest[len - 1] = 0;
 }
 
+void print_song(struct song_node *n)
+{
+    printf("[%s - %s]\n", n->artist, n->name);
+}
+
 void print_list(struct song_node *n)
 {
     while (n)
     {
-        printf("[%s - %s]\n", n->artist, n->name);
+        print_song(n);
         n = n->next;
     }
-    printf("\n");
 }
 
 struct song_node *add_song(struct song_node *list, char *artist, char *name)
@@ -79,6 +83,23 @@ struct song_node *add_song_sorted(struct song_node *list, char *artist, char *na
     }
     prev->next = new_node;
     return list;
+}
+
+struct song_node *find_song(struct song_node *list, char *artist, char *name)
+{
+    /*
+     * Finds a song with the given artist and name in the list and returns a pointer to it.
+     *
+     * If not found, returns a null pointer.
+     */
+    for (; list != NULL; list = list->next)
+    {
+        if (strcmp(list->artist, artist) == 0 && strcmp(list->name, name) == 0)
+        {
+            return list;
+        }
+    }
+    return 0;
 }
 
 struct song_node *remove_song(struct song_node *list, struct song_node *to_rm)
