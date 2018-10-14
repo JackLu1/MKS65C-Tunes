@@ -20,20 +20,16 @@ void test_song_list()
     print_list(song_list);
     
     printf(":::Finding [John Coltrane - Blue Train]:::\n");
-    struct song_node *song = find_song(song_list, "John Coltrane", "Blue Train");
-    print_song(song);
+    print_song(find_song(song_list, "John Coltrane", "Blue Train"));
 
     printf(":::Finding [JynX - Present World Overhaul]:::\n");
-    song = find_song(song_list, "JynX", "Present World Overhaul");
-    printf("%p\n", song);
+    printf("%p\n", find_song(song_list, "JynX", "Present World Overhaul"));
 
     printf(":::Finding a song by Queen:::\n");
-    song = find_song_artist(song_list, "Queen");
-    print_song(song);
+    print_song(find_song_artist(song_list, "Queen"));
 
     printf(":::Finding a song by Logan Paul:::\n");
-    song = find_song_artist(song_list, "Logan Paul");
-    printf("%p\n", song);
+    printf("%p\n", find_song_artist(song_list, "Logan Paul"));
 
     printf(":::Remove a node:::\n");
     song_list = remove_song(song_list, 
@@ -48,7 +44,17 @@ void test_song_list()
     song_list = remove_song(song_list, song_list);
     song_list = remove_song(song_list, song_list);
     print_list(song_list);
-    song_list = free_list(song_list);
+
+    printf(":::Printing random songs:::\n");
+    song_list = add_song(song_list, "Beatles", "Maxwell's Silver Hammer");
+    song_list = add_song(song_list, "Beatles", "Hey Jude");
+    song_list = add_song(song_list, "Beatles", "Yellow Submarine");
+    song_list = add_song(song_list, "Beatles", "Help!");
+    print_song(random_song(song_list));
+    print_song(random_song(song_list));
+    print_song(random_song(song_list));
+    print_song(random_song(song_list));
+    print_song(random_song(song_list));
 }
 
 void test_add_song_sorted()
@@ -92,6 +98,7 @@ void test_add_song_sorted()
 
 int main()
 {
+    srand(time(NULL));
     test_song_list();
     /* test_add_song_sorted(); */
     return 0;

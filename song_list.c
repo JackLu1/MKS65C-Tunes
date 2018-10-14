@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 #include "song_list.h"
 
 char *n_strncpy(char *dest, char *src, int len)
@@ -102,6 +103,19 @@ struct song_node *find_song(struct song_node *list, char *artist, char *name)
     return 0;
 }
 
+struct song_node *random_song(struct song_node *list)
+{
+    /*
+     * Returns a pointer to the random song from the list.
+     */
+    int len = 0;
+    struct song_node *temp = list;
+    for (; temp != NULL; temp = temp->next, len++);
+    int rand_index = rand() % len;
+    for (temp = list; rand_index != 0; temp=temp->next, rand_index--);
+    return temp;
+}
+
 struct song_node *find_song_artist(struct song_node *list, char *artist)
 {
     /*
@@ -123,7 +137,7 @@ struct song_node *remove_song(struct song_node *list, struct song_node *to_rm)
     /*
      * Remove to_rm from list.
      *
-     * Returns beginning of the list.
+     * Returns a pointer to the beginning of the list.
      */
     if (list == to_rm)
     {
