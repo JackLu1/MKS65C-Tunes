@@ -102,6 +102,22 @@ struct song_node *find_song(struct song_node *list, char *artist, char *name)
     return 0;
 }
 
+struct song_node *find_song_artist(struct song_node *list, char *artist)
+{
+    /*
+     * Finds the first song in the list by the given artist and returns a pointer to it.
+     * If not found, returns a null pointer.
+     */
+
+    for (; list != NULL; list = list->next)
+    {
+        if (strcmp(list->artist, artist) == 0)
+        {
+            return list;
+        }
+    }
+}
+
 struct song_node *remove_song(struct song_node *list, struct song_node *to_rm)
 {
     /*

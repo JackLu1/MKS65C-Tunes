@@ -10,19 +10,10 @@ void test_song_list()
     struct song_node *song_list = 0;
     print_list(song_list);
 
-    printf(":::Adding songs to the front:::\n");
+    printf(":::Add songs:::\n");
     song_list = add_song(song_list, "Red Hot Chili Peppers", "Otherside");
-    print_list(song_list);
-
-    printf(":::Another one:::\n");
     song_list = add_song(song_list, "Queen", "Bohemeian Rhapsody");
-    print_list(song_list);
-
-    printf(":::Another one:::\n");
     song_list = add_song(song_list, "John Coltrane", "Blue Train");
-    print_list(song_list);
-
-    printf(":::Buffer overflow prevention test:::\n");
     song_list = add_song(song_list, 
             "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAb", 
             "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAb");
@@ -34,6 +25,14 @@ void test_song_list()
 
     printf(":::Finding [JynX - Present World Overhaul]:::\n");
     song = find_song(song_list, "JynX", "Present World Overhaul");
+    printf("%p\n", song);
+
+    printf(":::Finding a song by Queen:::\n");
+    song = find_song_artist(song_list, "Queen");
+    print_song(song);
+
+    printf(":::Finding a song by Logan Paul:::\n");
+    song = find_song_artist(song_list, "Logan Paul");
     printf("%p\n", song);
 
     printf(":::Remove a node:::\n");
