@@ -85,7 +85,7 @@ void test_add_song_sorted()
 int main()
 {
     test_song_list();
-    /* test_add_song_sorted(); */
+    test_add_song_sorted();
     return 0;
 }
 

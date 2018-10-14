@@ -65,7 +65,7 @@ struct song_node *add_song_sorted(struct song_node *list, char *artist, char *na
     }
 
     /* Same artist name, sort by song name instead */
-    while (cur != NULL, strcmp(artist, cur->artist) == 0, strcmp(name, cur->name) > 0)
+    while (cur != NULL && strcmp(artist, cur->artist) == 0 && strcmp(name, cur->name) > 0)
     {
         prev = cur;
         cur = cur->next;
