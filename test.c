@@ -46,17 +46,6 @@ void test_song_list()
     song_list = remove_song(song_list, song_list);
     print_list(song_list);
 
-    printf(":::Printing random songs:::\n");
-    song_list = add_song(song_list, "Beatles", "Maxwell's Silver Hammer");
-    song_list = add_song(song_list, "Beatles", "Hey Jude");
-    song_list = add_song(song_list, "Beatles", "Yellow Submarine");
-    song_list = add_song(song_list, "Beatles", "Help!");
-    print_song(random_song(song_list));
-    print_song(random_song(song_list));
-    print_song(random_song(song_list));
-    print_song(random_song(song_list));
-    print_song(random_song(song_list));
-
     printf("===Testing add_song_sorted()===\n");
     song_list = add_song_sorted(song_list, "Paul McCartney", "Temporary Secretary");
     song_list = add_song_sorted(song_list, "Beatles", "Let it Be");    
@@ -68,6 +57,14 @@ void test_song_list()
     song_list = add_song_sorted(song_list, "ABBA", "Chiquita");
     song_list = add_song_sorted(song_list, "Vanilla Ice", "Play That Funky Music");
     print_list(song_list);
+
+    printf(":::Printing random songs:::\n");
+    print_song(random_song(song_list));
+    print_song(random_song(song_list));
+    print_song(random_song(song_list));
+    print_song(random_song(song_list));
+    print_song(random_song(song_list));
+
 }
 
 void test_add_song_sorted()
