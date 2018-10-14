@@ -56,52 +56,28 @@ void test_song_list()
     print_song(random_song(song_list));
     print_song(random_song(song_list));
     print_song(random_song(song_list));
+
+    printf("===Testing add_song_sorted()===\n");
+    song_list = add_song_sorted(song_list, "Paul McCartney", "Temporary Secretary");
+    song_list = add_song_sorted(song_list, "Beatles", "Let it Be");    
+    song_list = add_song_sorted(song_list, "ABBA", "Dancing Queen");    
+    song_list = add_song_sorted(song_list, "Queen", "Killer Queen");
+    song_list = add_song_sorted(song_list, "Vanilla Ice", "Ice Ice Baby");
+    song_list = add_song_sorted(song_list, "Queen", "We Will Rock You");
+    song_list = add_song_sorted(song_list, "Queen", "Don't Stop Me Now");
+    song_list = add_song_sorted(song_list, "ABBA", "Chiquita");
+    song_list = add_song_sorted(song_list, "Vanilla Ice", "Play That Funky Music");
+    print_list(song_list);
 }
 
 void test_add_song_sorted()
 {
-    printf("===Testing add_song_sorted()===\n");
-
-    printf(":::Adding to an empty list:::\n");
-    struct song_node *song_list = 0;
-    song_list = add_song_sorted(song_list, "Paul McCartney", "Temporary Secretary");
-    print_list(song_list);
-
-    printf(":::Adding to the beginning:::\n");
-    song_list = add_song_sorted(song_list, "Beatles", "Let it Be");    
-    print_list(song_list);
-
-    printf(":::Adding to the beginning:::\n");
-    song_list = add_song_sorted(song_list, "ABBA", "Dancing Queen");    
-    print_list(song_list);
-
-    printf(":::Adding to the end:::\n");
-    song_list = add_song_sorted(song_list, "Queen", "Killer Queen");
-    print_list(song_list);
-
-    printf(":::Adding to the end:::\n");
-    song_list = add_song_sorted(song_list, "Vanilla Ice", "Ice Ice Baby");
-    print_list(song_list);
-
-    printf(":::Add by song name:::\n");
-    song_list = add_song_sorted(song_list, "Queen", "We Will Rock You");
-    song_list = add_song_sorted(song_list, "Queen", "Don't Stop Me Now");
-    print_list(song_list);
-
-    printf(":::Add by song name at the beginning:::\n");
-    song_list = add_song_sorted(song_list, "ABBA", "Chiquita");
-    print_list(song_list);
-
-    printf(":::Add by song name, at the end:::\n");
-    song_list = add_song_sorted(song_list, "Vanilla Ice", "Play That Funky Music");
-    print_list(song_list);
 }
 
 int main()
 {
     srand(time(NULL));
     test_song_list();
-    /* test_add_song_sorted(); */
     return 0;
 }
 
