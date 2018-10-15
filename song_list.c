@@ -21,21 +21,21 @@ void print_list(struct song_node *n)
     }
 }
 
-struct song_node *add_song(struct song_node *list, char *artist, char *name)
+struct song_node *add_node(struct song_node *list, char *artist, char *name)
 {
     /*
-     * Add a song to the beginning of the list.
+     * Add a song before the given node.
      */
 
-    struct song_node *new_list = malloc(sizeof(struct song_node));
-    new_list->next = list;
-    strncpy(new_list->artist, artist, 100);
-    strncpy(new_list->name, name, 100);
-    name[100 - 1] = 0; artist[100 - 1] = 0;
-    return new_list;
+    struct song_node *new_node = malloc(sizeof(struct song_node));
+    new_node->next = list;
+    strncpy(new_node->artist, artist, 100);
+    strncpy(new_node->name, name, 100);
+    new_node->name[100 - 1] = 0; new_node->artist[100 - 1] = 0;
+    return new_node;
 }
 
-struct song_node *add_song_sorted(struct song_node *list, char *artist, char *name)
+struct song_node *add_node_sorted(struct song_node *list, char *artist, char *name)
 {
     /*
      * Adds a song in alphabetical order, first by the artist name and then the song name.
@@ -46,7 +46,7 @@ struct song_node *add_song_sorted(struct song_node *list, char *artist, char *na
     // Empty list, add to list
     if (list == NULL)
     {
-        return add_song(list, artist, name);
+        return add_node(list, artist, name);
     }
 
     struct song_node *cur = list;
@@ -68,7 +68,7 @@ struct song_node *add_song_sorted(struct song_node *list, char *artist, char *na
     }
 
     /* Insert to found position */
-    new_node = add_song(cur, artist, name);
+    new_node = add_node(cur, artist, name);
     if (prev == NULL)
     {
         return new_node;
@@ -77,7 +77,7 @@ struct song_node *add_song_sorted(struct song_node *list, char *artist, char *na
     return list;
 }
 
-struct song_node *find_song(struct song_node *list, char *artist, char *name)
+struct song_node *find_node(struct song_node *list, char *artist, char *name)
 {
     /*
      * Finds a song with the given artist and name in the list and returns a pointer to it.
@@ -94,7 +94,7 @@ struct song_node *find_song(struct song_node *list, char *artist, char *name)
     return 0;
 }
 
-struct song_node *random_song(struct song_node *list)
+struct song_node *random_node(struct song_node *list)
 {
     /*
      * Returns a pointer to the random song from the list.
@@ -107,7 +107,7 @@ struct song_node *random_song(struct song_node *list)
     return temp;
 }
 
-struct song_node *find_song_artist(struct song_node *list, char *artist)
+struct song_node *find_node_artist(struct song_node *list, char *artist)
 {
     /*
      * Finds the first song in the list by the given artist and returns a pointer to it.
@@ -123,7 +123,7 @@ struct song_node *find_song_artist(struct song_node *list, char *artist)
     }
 }
 
-struct song_node *remove_song(struct song_node *list, struct song_node *to_rm)
+struct song_node *remove_node(struct song_node *list, struct song_node *to_rm)
 {
     /*
      * Remove to_rm from list.
