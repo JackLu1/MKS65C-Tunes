@@ -67,10 +67,16 @@ void test_song_list()
 
 }
 
+void test_lib(){
+   struct song_node * lib = create_lib(); 
+
+}
+
 int main()
 {
     srand(time(NULL));
-    test_song_list();
+    //test_song_list();
+    test_lib();
     return 0;
 }
 
