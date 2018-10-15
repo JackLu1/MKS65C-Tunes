@@ -67,10 +67,6 @@ void test_song_list()
 
 }
 
-void test_add_node_sorted()
-{
-}
-
 int main()
 {
     srand(time(NULL));
