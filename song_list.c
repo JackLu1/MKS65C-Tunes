@@ -7,15 +7,6 @@
 #include <string.h>
 #include "song_list.h"
 
-char *n_strncpy(char *dest, char *src, int len)
-{
-    /*
-     * Same as strncpy, but always null terminates the dest array.
-     */
-    strncpy(dest, src, len);
-    dest[len - 1] = 0;
-}
-
 void print_song(struct song_node *n)
 {
     printf("[%s - %s]\n", n->artist, n->name);
@@ -38,8 +29,9 @@ struct song_node *add_song(struct song_node *list, char *artist, char *name)
 
     struct song_node *new_list = malloc(sizeof(struct song_node));
     new_list->next = list;
-    n_strncpy(new_list->artist, artist, 100);
-    n_strncpy(new_list->name, name, 100);
+    strncpy(new_list->artist, artist, 100);
+    strncpy(new_list->name, name, 100);
+    name[100 - 1] = 0; artist[100 - 1] = 0;
     return new_list;
 }
 
