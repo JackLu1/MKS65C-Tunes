@@ -5,7 +5,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <time.h>
 #include "song_list.h"
 
 char *n_strncpy(char *dest, char *src, int len)
