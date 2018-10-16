@@ -16,4 +16,6 @@ struct song_node *remove_node(struct song_node *, struct song_node *);
 struct song_node *random_node(struct song_node *);
 
 //music_library functions
-struct song_node *create_lib();
+struct song_node **create_lib();
+void print_lib(struct song_node **);
+void add_song(struct song_node **lib, char* artist, char *name);

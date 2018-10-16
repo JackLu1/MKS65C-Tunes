@@ -68,8 +68,17 @@ void test_song_list()
 }
 
 void test_lib(){
-   struct song_node * lib = create_lib(); 
-
+   struct song_node **lib = create_lib();
+   printf(":::Printing empty library:::\n");
+   print_lib(lib);
+   printf(":::Adding songs:::\n");
+   add_song(lib, "Weird Al Yankovic", "Amish Paradise");
+   add_song(lib, "Drake", "Hotline Bling");
+   add_song(lib, "Earth, Wind & Fire", "September");
+   add_song(lib, "6ix9ine", "i don't even know any songs by him");
+   add_song(lib, "drake", "Wii Shop Bling");
+   add_song(lib, "Eagles", "Hotel California");
+   print_lib(lib);
 }
 
 int main()
