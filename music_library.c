@@ -46,3 +46,15 @@ void add_song(struct song_node **lib, char* artist, char *name)
     }
     lib[i] = add_node_sorted(lib[i], artist, name);
 }
+
+struct song_node * search_song(struct song_node **lib, char* artist, char*name){
+    int i = 0;
+    struct song_node *s = malloc(sizeof(struct song_node));
+    for (i; i < 26; i++){
+        s = find_node(lib[i], artist, name);
+        if ( s != 0 ){
+            return s;
+        }
+    }
+    return 0;
+}

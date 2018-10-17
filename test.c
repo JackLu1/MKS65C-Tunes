@@ -80,6 +80,8 @@ void test_lib(){
    add_song(lib, "drake", "Wii Shop Bling");
    add_song(lib, "Eagles", "Hotel California");
    print_lib(lib);
+   printf("test song search\n");
+   print_song(search_song(lib, "Eagles", "Hotel California"));
 }
 
 int main()
