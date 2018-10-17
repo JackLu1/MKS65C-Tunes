@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "song_list.h"
+#include "music_library.h"
 
 struct song_node **create_lib(){
     /*
