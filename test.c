@@ -79,6 +79,8 @@ void test_lib(){
    add_song(lib, "Earth, Wind & Fire", "September");
    add_song(lib, "6ix9ine", "a");
    add_song(lib, "drake", "Wii Shop Bling");
+   add_song(lib, "drake", "Wii Shop Bling 5");
+   add_song(lib, "drake", "Wii Shop Bling 3");
    add_song(lib, "Eagles", "Hotel California");
    print_lib(lib);
    printf(":::Searching for [Eagles - Hotel California]:::\n");
@@ -87,10 +89,21 @@ void test_lib(){
    printf("%p\n", search_song(lib, "Luis Fonsi", "Despacito"));
    printf(":::Searching for [6ix9ine - a]:::\n");
    print_song(search_song(lib, "6ix9ine", "a"));
+   print_song(find_node_artist(lib[3], "drake"));
+    
+   printf("artist_exists test\n");
+   printf("%d\n", artist_exists(lib, "dont exist"));
+   printf("%d\n", artist_exists(lib, "drake"));
+   //clear_lib(lib);
+   //printf(":::Printing cleared library:::\n");
+   //print_lib(lib);
+   printf("print_letter test\n");
+   for (int i = 0; i < 28; i++){
+       print_letter(lib, 'a' + i);
+   }
 
-   clear_lib(lib);
-   printf(":::Printing cleared library:::\n");
-   print_lib(lib);
+   printf("print_artist test\n");
+   print_artist(lib, "Drake");
 }
 
 int main()

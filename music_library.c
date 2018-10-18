@@ -63,6 +63,46 @@ struct song_node *search_song(struct song_node **lib, char* artist, char*name)
     return find_node(lib[i], artist, name);
 }
 
+int artist_exists(struct song_node **lib, char * artist){
+    // return true or false
+    int i;
+    for (i = 0; i < 26; i++)
+    {
+        if (artist[0] == i + 'A' || artist[0] == i + 'a')
+        {
+            if (!(find_node_artist(lib[i], artist) == 0)){
+                return 1;
+            }
+        }
+    }
+    return 0;
+}
+
+void print_letter(struct song_node **lib, char letter){
+    int i;
+    for (i = 0; i < 27; i++){
+        if (letter == i + 'A' || letter == i + 'a'){
+            printf("%c list\n", i + 'A');
+            print_list(lib[i]);
+        }
+    }   
+}
+
+void print_artist(struct song_node **lib, char * artist){
+    int i;
+    for (i = 0; i < 27; i++){
+        if (artist[0] == i + 'A' || artist[0] == i + 'a'){
+            while (lib[i]){
+                if (!strcasecmp(lib[i]->artist, artist)){
+                    print_song(lib[i]);
+                }
+                lib[i] = lib[i]->next;
+            }
+        }
+    }   
+    
+}
+
 void clear_lib(struct song_node **lib)
 {
     /*
