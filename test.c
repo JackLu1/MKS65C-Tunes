@@ -89,6 +89,8 @@ void test_lib(){
    print_song(search_song(lib, "6ix9ine", "a"));
 
    clear_lib(lib);
+   printf(":::Printing cleared library:::\n");
+   print_lib(lib);
 }
 
 int main()
