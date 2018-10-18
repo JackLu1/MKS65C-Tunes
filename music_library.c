@@ -88,19 +88,40 @@ void print_letter(struct song_node **lib, char letter){
     }   
 }
 
-void print_artist(struct song_node **lib, char * artist){
-    int i;
-    for (i = 0; i < 27; i++){
-        if (artist[0] == i + 'A' || artist[0] == i + 'a'){
-            while (lib[i]){
-                if (!strcasecmp(lib[i]->artist, artist)){
-                    print_song(lib[i]);
-                }
-                lib[i] = lib[i]->next;
-            }
+void print_artist(struct song_node ** lib, char * artist){
+    int i = strncasecmp(artist, "A", 1);
+    struct song_node * temp = lib[i];
+    while (lib[i]){
+        // strcasecmp return 0 meaning matching artist name. !0 makes statement true
+        if (!strcasecmp(lib[i]->artist, artist)){
+            print_song(lib[i]);
         }
-    }   
-    
+        lib[i] = lib[i]->next;
+    }
+    lib[i] = temp;
+}
+
+// compare is s1 - s2
+void delete_song(struct song_node ** lib, char * artist, char * name){
+    int i = strncasecmp(artist, "A", 1);
+    struct song_node * to_rm = find_node(lib[i], artist, name);
+    print_song(to_rm);
+    lib[i] = remove_node(lib[i], to_rm);
+}
+
+/*
+ * randomly chooses n songs to print out
+ */
+void shuffle(struct song_node ** lib, int n){
+    int i; 
+    while (n--){
+        int i = rand() % 27;
+        while (!lib[i]){
+            i = rand() % 27;
+        }
+        printf("i = %d\n", i);
+        print_song( random_node(lib[i]) );
+    }
 }
 
 void clear_lib(struct song_node **lib)

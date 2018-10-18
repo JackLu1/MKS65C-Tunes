@@ -66,6 +66,11 @@ void test_song_list()
     print_song(random_node(song_list));
     print_song(random_node(song_list));
 
+    print_song(find_node(song_list, "Beatles", "Let it Be"));
+    song_list = remove_node(song_list, find_node(song_list, "Beatles", "Let it Be"));
+    printf("\n\n\n\n\n");
+    print_list(song_list);
+
     free_list(song_list);
 }
 
@@ -81,6 +86,7 @@ void test_lib(){
    add_song(lib, "drake", "Wii Shop Bling");
    add_song(lib, "drake", "Wii Shop Bling 5");
    add_song(lib, "drake", "Wii Shop Bling 3");
+   add_song(lib, "dragon", "test song");
    add_song(lib, "Eagles", "Hotel California");
    print_lib(lib);
    printf(":::Searching for [Eagles - Hotel California]:::\n");
@@ -104,12 +110,26 @@ void test_lib(){
 
    printf("print_artist test\n");
    print_artist(lib, "Drake");
+   printf("check didnt break\n");
+   print_letter(lib, 'd');
+
+   printf("\n\ndelete_song test\n\n");
+   delete_song(lib, "drake", "Wii Shop Bling 5");
+   print_lib(lib);
+   printf("\n\ndelete_song test\n\n");
+   delete_song(lib, "drake", "fake song 5");
+   print_lib(lib);
+
+   printf("\n\nshuffle test\n\n");
+   shuffle(lib, 5);
+   //shuffle(lib, 0);
+   //shuffle(lib, 14);
 }
 
 int main()
 {
     srand(time(NULL));
-    // test_song_list();
+    //test_song_list();
     test_lib();
     return 0;
 }

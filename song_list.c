@@ -9,7 +9,9 @@
 
 void print_song(struct song_node *n)
 {
-    printf("[%s - %s]\n", n->artist, n->name);
+    if (n){
+        printf("[%s - %s]\n", n->artist, n->name);
+    }
 }
 
 void print_list(struct song_node *n)
@@ -101,7 +103,11 @@ struct song_node *random_node(struct song_node *list)
      */
     int len = 0;
     struct song_node *temp = list;
-    for (; temp != NULL; temp = temp->next, len++);
+    for (; temp; temp = temp->next, len++);
+    // can't divide by 0
+    if (!len){
+        return 0;
+    }
     int rand_index = rand() % len;
     for (temp = list; rand_index != 0; temp=temp->next, rand_index--);
     return temp;
@@ -130,6 +136,9 @@ struct song_node *remove_node(struct song_node *list, struct song_node *to_rm)
      *
      * Returns a pointer to the beginning of the list.
      */
+    if (!to_rm){
+        return list;
+    }
     if (list == to_rm)
     {
         struct song_node *new_head = to_rm->next;
