@@ -66,6 +66,7 @@ void test_song_list()
     print_song(random_node(song_list));
     print_song(random_node(song_list));
 
+    free_list(song_list);
 }
 
 void test_lib(){
@@ -86,12 +87,14 @@ void test_lib(){
    printf("%p\n", search_song(lib, "Luis Fonsi", "Despacito"));
    printf(":::Searching for [6ix9ine - a]:::\n");
    print_song(search_song(lib, "6ix9ine", "a"));
+
+   clear_lib(lib);
 }
 
 int main()
 {
     srand(time(NULL));
-    //test_song_list();
+    // test_song_list();
     test_lib();
     return 0;
 }

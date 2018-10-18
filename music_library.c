@@ -33,7 +33,7 @@ void print_lib(struct song_node **lib)
     }
 }
 
-int *find_index(struct song_node **lib, char* artist)
+int find_index(struct song_node **lib, char* artist)
 {
     /*
      * Helper function to find the correct linked list in the array.
@@ -50,13 +50,27 @@ int *find_index(struct song_node **lib, char* artist)
     }
     return i;
 }
+
 void add_song(struct song_node **lib, char* artist, char *name)
 {
     int i = find_index(lib, artist);
     lib[i] = add_node_sorted(lib[i], artist, name);
 }
 
-struct song_node *search_song(struct song_node **lib, char* artist, char*name){
+struct song_node *search_song(struct song_node **lib, char* artist, char*name)
+{
     int i = find_index(lib, artist);
     return find_node(lib[i], artist, name);
+}
+
+void clear_lib(struct song_node **lib)
+{
+    /*
+     * Completely remove all songs in the library.
+     */
+    int i;
+    for (i = 0; i < 27; i++)
+    {
+        free_list(lib[i]);
+    } 
 }
