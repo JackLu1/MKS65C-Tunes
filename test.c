@@ -76,12 +76,16 @@ void test_lib(){
    add_song(lib, "Weird Al Yankovic", "Amish Paradise");
    add_song(lib, "Drake", "Hotline Bling");
    add_song(lib, "Earth, Wind & Fire", "September");
-   add_song(lib, "6ix9ine", "i don't even know any songs by him");
+   add_song(lib, "6ix9ine", "a");
    add_song(lib, "drake", "Wii Shop Bling");
    add_song(lib, "Eagles", "Hotel California");
    print_lib(lib);
-   printf("test song search\n");
+   printf(":::Searching for [Eagles - Hotel California]:::\n");
    print_song(search_song(lib, "Eagles", "Hotel California"));
+   printf(":::Searching for [Luis Fonsi - Despacito]:::\n");
+   printf("%p\n", search_song(lib, "Luis Fonsi", "Despacito"));
+   printf(":::Searching for [6ix9ine - a]:::\n");
+   print_song(search_song(lib, "6ix9ine", "a"));
 }
 
 int main()
