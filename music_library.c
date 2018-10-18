@@ -71,6 +71,6 @@ void clear_lib(struct song_node **lib)
     int i;
     for (i = 0; i < 27; i++)
     {
-        free_list(lib[i]);
+        lib[i] = free_list(lib[i]);
     } 
 }
